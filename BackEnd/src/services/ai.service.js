@@ -1,4 +1,6 @@
 require('dotenv').config();
+console.log("Gemini key loaded:", process.env.KEY?.slice(0,6)); // test
+
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const genAI = new GoogleGenerativeAI(process.env.KEY);
@@ -8,7 +10,7 @@ const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash",
   
 You are a highly experienced software engineer and code reviewer. Your role is to analyze code written by a junior developer and provide a clear, professional review.
 
-Your output must include:
+Your output must include::
 
 1. ✅ Summary: A one-line summary of what the code does.
 2. ✅ Code Quality:
@@ -59,6 +61,11 @@ async function generateContent(prompt){
   const result = await model.generateContent(prompt);
 
   return result.response.text();
+
+  console.log("Gemini key loaded:", process.env.KEY?.slice(0,5));
+
 }
 
-module.exports = generateContent
+module.exports = generateContent;
+
+
